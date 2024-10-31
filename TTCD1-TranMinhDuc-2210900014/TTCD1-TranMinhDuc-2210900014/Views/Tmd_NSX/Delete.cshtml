@@ -1,0 +1,38 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_NSX
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+    ViewBag.Title = "Xóa Nhà Sản Xuất";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-header">
+                <h4>Xóa Nhà Sản Xuất</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Mã Nhà Sản Xuất</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.MaNSX)</dd>
+                    <hr/>
+
+                    <dt class="col-sm-3">Tên Nhà Sản Xuất</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.TenNSX)</dd>
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" name="id" value="@Model.MaNSX.Trim()" />
+
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                    <span>|</span>
+                    @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+                }
+            </div>
+        </div>
+    </div>
+</div>

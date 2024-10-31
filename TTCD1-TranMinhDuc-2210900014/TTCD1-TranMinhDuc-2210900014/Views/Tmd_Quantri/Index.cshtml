@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TTCD1_TranMinhDuc_2210900014.Models.Tmd_Quantri>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+    int i = 1;
+}
+
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Danh sách quản trị viên</h4>
+                <p>
+                    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary" })
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Họ tên</th>
+                                <th>Mật khẩu</th>
+                                <th>Trạng thái</th>
+                                <th>Tài khoản</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(i++)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.HotenAdmin)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.MatkhauAdmin)</td>
+                                    <td style="color: @(item.TrangThai == true ? "green" : "red")">
+                                        @(item.TrangThai == true ? "Hoạt động" : "Ngừng hoạt động")
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.Taikhoan)</td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaAdmin }, new { @class = "btn btn-warning btn-sm" }) |
+                                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaAdmin }, new { @class = "btn btn-info btn-sm" }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaAdmin }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<TTCD1_TranMinhDuc_2210900014.Models.Tmd_News>
+
+@{
+    ViewBag.Title = "Danh sách tin tức";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Danh sách tin tức</h4>
+                <p>
+                    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary" })
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tiêu đề</th>
+                                <th>Mô tả 1</th>
+                                <th>Mô tả 2</th>
+                                <th>Hình ảnh</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int j = 1;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(j++)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TitleNew)</td>
+                                    <td id="limited-text1">@Html.DisplayFor(modelItem => item.Mota1)</td>
+                                    <td id="limited-text2">@Html.DisplayFor(modelItem => item.Mota2)</td>
+                                    <td>
+                                        <img src="~/Content/Img/News/@item.Anh" alt="Hình ảnh" style="width: 50px; height: 50px;" />
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaNew }, new { @class = "btn btn-warning btn-sm" }) |
+                                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaNew }, new { @class = "btn btn-info btn-sm" }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaNew }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const maxLength = 20;
+    const textElement1 = document.getElementById('limited-text1');
+    if (textElement1.textContent.length > maxLength) {
+        textElement1.textContent = textElement1.textContent.slice(0, maxLength) + '...';
+    }
+
+    const textElement2 = document.getElementById('limited-text2');
+    if (textElement2.textContent.length > maxLength) {
+        textElement2.textContent = textElement2.textContent.slice(0, maxLength) + '...';
+    }
+</script>

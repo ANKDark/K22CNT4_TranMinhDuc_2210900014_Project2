@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Tmd_QlyCuaHang_2210900014Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Tmd_SanPham">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="Int32" Nullable="false" />
+    <Property Name="TenSP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="NgayNhap" Type="DateTime" Precision="0" />
+    <Property Name="GiaBan" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="GiaNhap" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Sale" Type="Boolean" />
+  </EntityType>
+  <EntityContainer Name="Tmd_QlyCuaHang_2210900014Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tmd_SanPham" EntityType="Self.Tmd_SanPham" />
+  </EntityContainer>
+</Schema>

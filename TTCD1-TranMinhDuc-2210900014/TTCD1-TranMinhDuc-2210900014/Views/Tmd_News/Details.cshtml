@@ -1,0 +1,49 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_News
+
+@{
+    ViewBag.Title = "Chi Tiết Tin Tức";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-header">
+                <h4>Thông Tin Tin Tức</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Tiêu Đề</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.TitleNew)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Mô Tả 1</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Mota1)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Mô Tả 2</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Mota2)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Hình Ảnh</dt>
+                    <dd class="col-sm-9">
+                        @{
+                            var imgPath = Url.Content("~/Content/Img/News/" + Model.Anh);
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Anh) && System.IO.File.Exists(Server.MapPath(imgPath)))
+                        {
+                            <img style="max-width: 100%; height: auto;" src="@imgPath" alt="Hình Ảnh" class="img-fluid" />
+                        }
+                        else
+                        {
+                            <p>Không thể tải hình ảnh: Hình ảnh không tồn tại hoặc không hợp lệ.</p>
+                        }
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaNew }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_Quantri
+
+@{
+    ViewBag.Title = "Chi Tiết Quản Trị";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-header">
+                <h4>Thông Tin Quản Trị</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Họ Tên Quản Trị</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.HotenAdmin)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Mật Khẩu</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.MatkhauAdmin)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Trạng Thái</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.TrangThai.HasValue)
+                        {
+                            <text>Hoạt động</text>
+                        }
+                        else
+                        {
+                            <text>Ngừng hoạt động</text>
+                        }
+                    </dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Tài Khoản</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Taikhoan)</dd>
+                    <hr />
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaAdmin }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</div>

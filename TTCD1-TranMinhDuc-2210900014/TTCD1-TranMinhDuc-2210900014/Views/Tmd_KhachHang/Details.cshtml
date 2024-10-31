@@ -1,0 +1,83 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_KhachHang
+
+@{
+    ViewBag.Title = "Chi Tiết Khách Hàng";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-header">
+                <h4>Thông Tin Khách Hàng</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Họ Tên</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.HoTen)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Tài Khoản</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.TaiKhoan)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Điện Thoại</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.DienThoai)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Email</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Giới Tính</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.GioiTinh.HasValue)
+                        {
+                            if (Model.GioiTinh.Value)
+                            {
+                                <text>Nam</text>
+                            }
+                            else
+                            {
+                                <text>Nữ</text>
+                            }
+                        }
+                        else
+                        {
+                            <text>Không xác định</text>
+                        }
+                    </dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Ngày Sinh</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.NgaySinh, "{0:dd/MM/yyyy}")</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Trạng Thái</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.TrangThai.HasValue)
+                        {
+                            if (Model.TrangThai.Value)
+                            {
+                                <text>Hoạt động</text>
+                            }
+                            else
+                            {
+                                <text>Ngừng hoạt động</text>
+                            }
+                        }
+                        else
+                        {
+                            <text>Không xác định</text>
+                        }
+                    </dd>
+                    <hr />
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaKH }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</div>

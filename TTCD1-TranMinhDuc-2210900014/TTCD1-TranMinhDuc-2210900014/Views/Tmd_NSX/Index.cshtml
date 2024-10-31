@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TTCD1_TranMinhDuc_2210900014.Models.Tmd_NSX>
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+    ViewBag.Title = "Danh sách nhà sản xuất";
+    int i = 1;
+}
+
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Danh sách nhà sản xuất</h4>
+                <p>
+                    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary" })
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã nhà sản xuất</th>
+                                <th>Tên nhà sản xuất</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(i++)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.MaNSX)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TenNSX)</td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaNSX.Trim() }, new { @class = "btn btn-warning btn-sm" }) |
+                                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaNSX.Trim() }, new { @class = "btn btn-info btn-sm" }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaNSX.Trim() }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

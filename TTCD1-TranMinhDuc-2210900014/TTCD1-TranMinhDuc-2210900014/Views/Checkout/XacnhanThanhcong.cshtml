@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "XacnhanThanhcong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Xác Nhận Thành Công</h2>
+    <div class="card">
+        <div class="card-body text-center">
+            <h5 class="card-title">Cảm ơn bạn!</h5>
+            <p class="card-text">Đơn hàng của bạn đã được xác nhận thành công. Chúng tôi sẽ xử lý và giao hàng đến địa chỉ của bạn trong thời gian sớm nhất.</p>
+            <p class="card-text">Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với chúng tôi.</p>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Quay lại trang chủ</a>
+        </div>
+    </div>
+</div>

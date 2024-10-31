@@ -1,0 +1,70 @@
+﻿@model List<TTCD1_TranMinhDuc_2210900014.Models.Giohang>
+
+<div class="cart_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="cart_container">
+                    <div class="cart_title">Giỏ hàng của bạn<small> (@Model.Count item(s) in your cart)</small></div>
+                    <div class="cart_items">
+                        <ul class="list-group">
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="cart_item_image">
+                                            <img style="width: 40px; height: 50px"
+                                                 src="~/Content/Img/Products/Samsung/@item.img"
+                                                 onerror="this.onerror=null; this.src='~/Content/Img/placeholder.png';"
+                                                 alt="Image for @item.TenSP" />
+                                        </div>
+                                        <div class="cart_item_info d-flex flex-column justify-content-between">
+                                            <div class="cart_item_name">
+                                                <strong>Tên sản phẩm:</strong> @item.TenSP
+                                            </div>
+                                            <div class="cart_item_quantity d-flex align-items-center">
+                                                <strong>Số lượng:</strong>
+                                                <form action="@Url.Action("UpdateQuantity", "Carts")" method="post" class="d-flex ms-2">
+                                                    <input type="hidden" name="MaSP" value="@item.MaSP" />
+                                                    <button type="submit" name="action" value="decrease" class="btn btn-secondary btn-sm">-</button>
+                                                    <span class="mx-2">@item.SoLuong</span>
+                                                    <button type="submit" name="action" value="increase" class="btn btn-secondary btn-sm">+</button>
+                                                </form>
+                                            </div>
+                                            <div class="cart_item_price">
+                                                <strong>Giá tiền:</strong> @item.GiaBan đ
+                                            </div>
+                                            <div class="cart_item_total">
+                                                <strong>Tổng tiền:</strong> @(@item.GiaBan * item.SoLuong) đ
+                                            </div>
+                                        </div>
+                                        <div class="cart_item_action">
+                                            @using (Html.BeginForm("RemoveFromCart", "Carts", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("MaSP", item.MaSP)
+                                                <button type="submit" class="btn btn-danger btn-sm">Xóa khỏi giỏ hàng</button>
+                                            }
+                                        </div>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="list-group-item">Không có sản phẩm.</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="order_total text-end">
+                        <div class="order_total_title"><strong>Tổng giá tiền của giỏ hàng:</strong></div>
+                        <div class="order_total_amount">@Model.Sum(x => x.GiaBan * x.SoLuong) đ</div>
+                    </div>
+                    <div class="cart_buttons mt-3">
+                        <a href="/Home/Index" class="btn btn-outline-secondary">Tiếp tục mua sắm</a>
+                        <a href="@Url.Action("Thongtin", "Checkout")" class="btn btn-success">Thanh toán</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

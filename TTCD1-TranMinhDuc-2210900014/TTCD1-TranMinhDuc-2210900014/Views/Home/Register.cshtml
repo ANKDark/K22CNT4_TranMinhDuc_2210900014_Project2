@@ -1,0 +1,77 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_KhachHang
+
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/LoginRegisterLayout.cshtml";
+}
+
+<div class="register">
+    <div class="wrapper_tmd">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h1>Đăng ký</h1>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="input_box_tmd">
+                @Html.TextBoxFor(model => model.TaiKhoan, new { @placeholder = "Tên đăng nhập", @required = "required", @class = "form-control" })
+                <i class='bx bx-user'></i>
+                @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input_box_tmd">
+                @Html.TextBoxFor(model => model.HoTen, new { @placeholder = "Họ tên", @required = "required", @class = "form-control" })
+                <i class='bx bx-user-circle'></i>
+                @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input_box_tmd">
+                @Html.TextBoxFor(model => model.Email, new { @placeholder = "Email", @required = "required", @class = "form-control" })
+                <i class='bx bx-envelope'></i>
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input_box_tmd">
+                @Html.TextBoxFor(model => model.DienThoai, new { @placeholder = "Số điện thoại", @required = "required", @type = "number", @class = "form-control" })
+                <i class='bx bx-phone'></i>
+                @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input_box_tmd">
+                @Html.DropDownListFor(model => model.GioiTinh,
+                    new SelectList(new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "", Text = "Chọn giới tính", Selected = true },
+                        new SelectListItem { Value = "true", Text = "Nam" },
+                        new SelectListItem { Value = "false", Text = "Nữ" }
+                    }, "Value", "Text"),
+                    new { @class = "form-control", @style = "padding: 0px 45px 0px 20px;" })
+                <i class='bx bx-user-circle'></i>
+                @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input_box_tmd">
+                @Html.PasswordFor(model => model.MatKhau, new { @placeholder = "Mật khẩu", @required = "required", @class = "form-control", @id = "pass_tmd" })
+                <i class='bx bx-lock'></i>
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input_box_tmd">
+                @Html.Password("check_pass_tmd", null, new { @placeholder = "Nhập lại mật khẩu", @required = "required", @class = "form-control", @id = "check_pass_tmd" })
+                <i class='bx bx-lock'></i>
+                <span id="loiMatKhau_tmd" class="error_tmd"></span><br>
+            </div>
+
+            <div class="input_box_tmd">
+                @Html.TextBoxFor(model => model.NgaySinh, new { @placeholder = "Ngày sinh", @class = "form-control", @type = "date" })
+                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn_sub_tmd" name="btn_sub_tmd">Đăng ký</button>
+
+            <div class="register_link_tmd">
+                <p>Bạn đã có tài khoản? <a href="/Home/Login" onclick="hienFormDangNhap()">Đăng nhập</a></p>
+            </div>
+        }
+    </div>
+</div>

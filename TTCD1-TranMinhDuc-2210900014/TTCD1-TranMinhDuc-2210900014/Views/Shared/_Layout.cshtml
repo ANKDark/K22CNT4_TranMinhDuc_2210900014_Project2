@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANK Smart - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css#" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;700&display=swap" rel="stylesheet">
+    <link href="~/Content/CSS/style.css" rel="stylesheet" />
+    @Scripts.Render("~/Content/JS/Nav2Fixed.js")
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-black nav1">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between w-100 align-items-center">
+                    <div class="flex-left">
+                        <ul class="nav nav-divided nav-uppercase header-contact">
+                            <li class="nav-item">
+                                <a href="mailto:dikhapthegioi2@gmail.com" class="nav-link text-light">
+                                    <i class="fa-solid fa-envelope-open-text"></i>
+                                    <span>Email</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="tel:0855312279" class="nav-link text-light">
+                                    <i class="fa-solid fa-mobile-screen"></i>
+                                    <span>Phone</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="flex-center">
+                        <a href="#" class="navbar-brand mx-auto">
+                            <img src="~/Content/Img/logo.png" alt="Logo" class="img-fluid">
+                        </a>
+                    </div>
+
+                    <div class="flex-right">
+                        <ul class="nav">
+                            @if (Session["UserID"] == null)
+                            {
+                                <li class="nav-item">
+                                    <a href="/Home/Login" class="nav-link text-light">
+                                        <i class="fa-solid fa-right-to-bracket"></i>
+                                        <span>Đăng nhập</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Home/Register" class="nav-link text-light">
+                                        <i class="fa-solid fa-user-plus"></i>
+                                        <span>Đăng ký</span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <span class="nav-link text-light">Xin chào, @Session["Username"]!</span>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Home/Logout" class="nav-link text-light">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        <span>Đăng xuất</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg navbar-light nav2">
+            <div class="container-fluid">
+                @Html.ActionLink("ANK Smart", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            @Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "nav-link active" })
+                        </li>
+                        <li class="nav-item position-relative">
+                            <a class="nav-link" href="/Carts/Cart">
+                                Giỏ hàng
+                                <span id="cartCount" class="badge bg-danger position-absolute top-0 start-100 translate-middle" style="border-radius: 50%; padding: 0.2rem 0.5rem; font-size: 0.75rem;">
+                                    @(Session["Cart"] != null ? ((List<TTCD1_TranMinhDuc_2210900014.Models.Giohang>)Session["Cart"]).Sum(p => p.SoLuong).ToString() : "0")
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Thông tin
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>@Html.ActionLink("Liên hệ", "Contact", "Home", new { area = "" }, new { @class = "dropdown-item text-center" })</li>
+                                <li>@Html.ActionLink("Tin tức về công nghệ", "Newslist", "Home", new { area = "" }, new { @class = "dropdown-item text-center" })</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" action="@Url.Action("Search", "Products")" method="get">
+                        <input class="form-control me-2" type="search" name="searchQuery" placeholder="Bạn cần tìm kiếm gì?" aria-label="Search">
+                        <button class="btn btn-outline-success" style="font-size: 12px;" type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+    <section class="py-5 bg-black text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5 class="ft-h5 text-uppercase">Hướng dẫn mua hàng</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white nav-link">Thanh toán</a></li>
+                        <li><a href="#" class="text-white nav-link">Hỗ trợ khách hàng</a></li>
+                        <li><a href="#" class="text-white nav-link">Vận chuyển</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <h5 class="ft-h5 text-uppercase">Chính sách</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white nav-link">Chính sách khách hàng</a></li>
+                        <li><a href="#" class="text-white nav-link">Chính sách thanh toán</a></li>
+                        <li><a href="#" class="text-white nav-link">Chính sách hoàn trả</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <h5 class="ft-h5 text-uppercase">Đăng ký nhận tin</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email của bạn:</label>
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="email" placeholder="Nhập email">
+                                <button type="submit" class="btn btn-primary">Đăng ký</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-3">
+                    <h5 class="ft-h5 text-uppercase">Hình thức thanh toán</h5>
+                    <div class="d-flex justify-content-start">
+                        <img class="img-fluid mx-1" style="width: 40px;" src="https://freepngimg.com/thumb/mastercard/4-2-mastercard-high-quality-png.png" alt="MasterCard">
+                        <img class="img-fluid mx-1" style="width: 40px;" src="https://freepngimg.com/thumb/categories/1783.png" alt="Visa">
+                        <img class="img-fluid mx-1" style="width: 40px;" src="https://w7.pngwing.com/pngs/289/163/png-transparent-paypal-business-logo-computer-icons-paypal-blue-text-trademark-thumbnail.png" alt="PayPal">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <h5 class="text-uppercase">Kết nối với chúng tôi</h5>
+                    <a href="https://www.facebook.com/profile.php?id=100013901885587"><i class="fab fa-facebook fa-2x mx-3 text-blue"></i></a>
+                    <a href="#"><i class="fab fa-instagram fa-2x mx-3"></i></a>
+                    <a href="mailto:dikhapthegioi2@gmail.com"><i class="fas fa-envelope fa-2x mx-3"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-center text-white py-3">
+        <p>&copy; @DateTime.Now.Year - Tran Minh Duc - 2210900014</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

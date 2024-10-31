@@ -1,0 +1,94 @@
+﻿@model IEnumerable<TTCD1_TranMinhDuc_2210900014.Models.Tmd_SanPham>
+
+<main aria-labelledby="title">
+    <div class="bread-crumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-12">
+                    <div class="container header-container">
+                        <div class="row">
+                            <swiper-container style="--swiper-navigation-color: #1E3E62; --swiper-pagination-color: #1E3E62; " class="mySwiper" navigation="true" pagination="true" loop="true" autoplay="true"
+                                              autoplay-delay="3000">
+                                <swiper-slide>
+                                    <img style="width: 110%" src="~/Content/Img/Swiper/swiper1.jpg" alt="Image 1" />
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img style="width: 110%" src="~/Content/Img/Swiper/swiper2.jpg" alt="Image 2" />
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img style="width: 110%" src="~/Content/Img/Swiper/swiper3.jpg" alt="Image 3" />
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img style="width: 110%" src="~/Content/Img/Swiper/swiper4.png" alt="Image 4" />
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img style="width: 110%" src="~/Content/Img/Swiper/swiper5.jpg" alt="Image 5" />
+                                </swiper-slide>
+                            </swiper-container>
+                            <div class="container pt-5 adss">
+                                <div class="ads d-flex justify-content-center">
+                                    <a href="#">
+                                        <img src="~/Content/Img/ads/ads1.gif" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="pt-5 row">
+                                <div class="col-lg-4 col-md-12">
+                                    <h4 class="bg-success text-center text-uppercase p-2">Danh sách dòng sản phẩm</h4>
+                                </div>
+                                <div class="col-lg-8 col-md-12 p-2">
+                                    <div class="other-link d-flex flex-wrap justify-content-lg-end justify-content-center">
+                                        <a class="nav-link custom-link" href="@Url.Action("ByCategory", "Products", new { category = "Điện thoại" })">Điện thoại</a>
+                                        <a class="nav-link custom-link" href="@Url.Action("ByCategory", "Products", new { category = "Apple" })">Apple</a>
+                                        <a class="nav-link custom-link" href="@Url.Action("ByCategory", "Products", new { category = "Laptop" })">Laptop</a>
+                                        <a class="nav-link custom-link" href="@Url.Action("ByCategory", "Products", new { category = "Tablet" })">Tablet</a>
+                                        <a class="nav-link custom-link" href="@Url.Action("ByCategory", "Products", new { category = "Màn hình" })">Màn hình</a>
+                                        <a class="nav-link custom-link" href="@Url.Action("ByCategory", "Products", new { category = "Phụ kiện" })">Phụ kiện</a>
+                                        <a class="nav-link custom-link" href="@Url.Action("ByCategory", "Products", new { category = "Đồng hồ" })">Đồng hồ</a>
+
+                                        <a class="nav-link custom-link d-none" href="#">Âm thanh</a>
+                                        <a class="nav-link custom-link d-none" href="#">Smart home</a>
+                                        <a class="nav-link custom-link d-none" href="#">Điện máy</a>
+                                        <button id="showMoreButton" class="btn nav-link btn-secondary">Xem thêm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center flex-wrap mt-5">
+                            @foreach (var product in Model)
+                            {
+                                if (product.SoLuong >= 1)
+                                {
+                                    for (int i = 0; i < 4; i++)
+                                    {
+                                        <div class="col-lg-3 col-md-4 col-6 d-flex justify-content-center mb-4">
+                                            <div class="product-block-item text-center" style="border-radius: 10px; overflow: hidden; border: 1px solid #ddd; position: relative;">
+                                                <div class="product-thumbnail p-2">
+                                                    <img src="~/Content/Img/Products/@product.img1" class="card-img-top" alt="@product.TenSP" style="width: 100%; max-height: 185px; max-width: 150px;">
+                                                </div>
+                                                <div class="card-body p-3">
+                                                    <h5 class="cd-title">@product.TenSP</h5>
+                                                    <p class="product-price"><strong>@product.GiaBan</strong></p>
+                                                    <div class="note d-flex align-items-center" style="margin-bottom: 5px;">
+                                                        <span class="ban" style="background-color: orange; color: white; border-radius: 5px; padding: 2px 5px; margin-right: 5px;">KM</span>
+                                                        <label style="margin-top: 5px; text-align: left; font-size: 14px; color: #705C53" title="Giảm thêm 500K - 2TR qua cổng thanh toán">Giảm thêm 500K - 2TR qua cổng thanh toán</label>
+                                                    </div>
+                                                    <div class="note d-flex align-items-center" style="margin-bottom: 5px;">
+                                                        <span class="ban" style="background-color: orange; color: white; border-radius: 5px; padding: 2px 5px; margin-right: 5px;">KM</span>
+                                                        <label style="margin-top: 5px; text-align: left; font-size: 14px; color: #705C53" title="Miễn phí chuyển đổi trả góp qua 26 ngân hàng">Miễn phí chuyển đổi trả góp qua 26 ngân hàng</label>
+                                                    </div>
+                                                    <a href="@Url.Action("Details", "Products", new { id = product.MaSP })" class="btn btn-primary">Xem Chi Tiết</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@Scripts.Render("~/Content/JS/Nav2Fixed.js")

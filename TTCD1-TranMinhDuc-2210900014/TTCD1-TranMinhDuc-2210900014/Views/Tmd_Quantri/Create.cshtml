@@ -1,0 +1,61 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_Quantri
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Thêm quản trị viên</h4>
+                <p class="card-description">
+                    <a href="/HomeAdmin/DashBoard" style="text-decoration: none; color: inherit; font-weight: bold;">Trang chủ admin</a> &#47; Thêm quản trị viên
+                </p>
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "forms-sample" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <label for="HotenAdmin">Họ tên</label>
+                        @Html.EditorFor(model => model.HotenAdmin, new { htmlAttributes = new { @class = "form-control", placeholder = "Họ tên quản trị viên", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.HotenAdmin, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Taikhoan">Tài khoản</label>
+                        @Html.EditorFor(model => model.Taikhoan, new { htmlAttributes = new { @class = "form-control", placeholder = "Tài khoản", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.Taikhoan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="MatkhauAdmin">Mật khẩu</label>
+                        @Html.EditorFor(model => model.MatkhauAdmin, new { htmlAttributes = new { @class = "form-control", placeholder = "Mật khẩu", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.MatkhauAdmin, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TrangThai">Trạng thái</label>
+                        @Html.DropDownList("TrangThai", new SelectList(new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Hoạt động", Value = "true" },
+                            new SelectListItem { Text = "Ngừng hoạt động", Value = "false" }
+                        }, "Value", "Text"), "Chọn trạng thái", new { @class = "form-control", style = "min-width: 100%;" })
+                        @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Tạo mới" class="btn btn-primary me-2" />
+                        <input type="reset" value="Hủy bỏ" class="btn btn-secondary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-link text-white fw-bold", style = "font-size: 20px; text-decoration: none;" })
+</div>

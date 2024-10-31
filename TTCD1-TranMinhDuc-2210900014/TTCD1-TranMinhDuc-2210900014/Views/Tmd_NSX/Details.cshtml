@@ -1,0 +1,30 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_NSX
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+    ViewBag.Title = "Chi Tiết Nhà Sản Xuất";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-header">
+                <h4>Thông Tin Nhà Sản Xuất</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Mã Nhà Sản Xuất</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.MaNSX)</dd>
+                    <hr/>
+
+                    <dt class="col-sm-3">Tên Nhà Sản Xuất</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.TenNSX)</dd>
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaNSX.Trim() }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</div>

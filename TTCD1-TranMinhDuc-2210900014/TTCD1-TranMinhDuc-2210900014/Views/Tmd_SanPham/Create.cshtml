@@ -1,0 +1,129 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_SanPham
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Thêm sản phẩm</h4>
+                <p class="card-description">
+                    <a href="/HomeAdmin/DashBoard" style="text-decoration: none; color: inherit; font-weight: bold;">Trang chủ admin</a> &#47; Thêm sản phẩm
+                </p>
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "forms-sample" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <label for="TenSP">Tên sản phẩm</label>
+                        @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên sản phẩm", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="SoLuong">Số lượng</label>
+                        @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", placeholder = "Số lượng", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="NgayNhap">Ngày nhập</label>
+                        @Html.TextBoxFor(model => model.NgayNhap, new { @class = "form-control", placeholder = "Chọn ngày nhập", type = "date", style = "min-width: 100%;" })
+                        @Html.ValidationMessageFor(model => model.NgayNhap, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="GiaBan">Giá bán</label>
+                        @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control", placeholder = "Giá bán", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="GiaNhap">Giá nhập</label>
+                        @Html.EditorFor(model => model.GiaNhap, new { htmlAttributes = new { @class = "form-control", placeholder = "Giá nhập", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.GiaNhap, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Sale">Sale</label>
+                        @Html.DropDownList("Sale", new SelectList(new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Có", Value = "true" },
+                            new SelectListItem { Text = "Không", Value = "false" }
+                        }, "Value", "Text"), "Chọn trạng thái sale", new { @class = "form-control", style = "min-width: 100%;" })
+                        @Html.ValidationMessageFor(model => model.Sale, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="SoLuongDaBan">Số lượng đã bán</label>
+                        @Html.EditorFor(model => model.SoLuongDaBan, new { htmlAttributes = new { @class = "form-control", placeholder = "Số lượng đã bán", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.SoLuongDaBan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TinhTrang">Tình trạng</label>
+                        @Html.DropDownList("TinhTrang", new SelectList(new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Còn hàng", Value = "true" },
+                            new SelectListItem { Text = "Hết hàng", Value = "false" }
+                        }, "Value", "Text"), "Chọn tình trạng", new { @class = "form-control", style = "min-width: 100%;" })
+                        @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="img1">Hình ảnh 1</label>
+                        <input type="file" name="img1" class="form-control" id="img1" style="min-width: 100%;" onchange="previewImage(event, 'imgPreview1')" />
+                        @Html.ValidationMessageFor(model => model.img1, "", new { @class = "text-danger" })
+                        <img id="imgPreview1" src="#" alt="Image Preview 1" style="display: none; max-width: 100px; margin-top: 10px;" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="img2">Hình ảnh 2</label>
+                        <input type="file" name="img2" class="form-control" id="img2" style="min-width: 100%;" onchange="previewImage(event, 'imgPreview2')" />
+                        @Html.ValidationMessageFor(model => model.img2, "", new { @class = "text-danger" })
+                        <img id="imgPreview2" src="#" alt="Image Preview 2" style="display: none; max-width: 100px; margin-top: 10px;" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="img3">Hình ảnh 3</label>
+                        <input type="file" name="img3" class="form-control" id="img3" style="min-width: 100%;" onchange="previewImage(event, 'imgPreview3')" />
+                        @Html.ValidationMessageFor(model => model.img3, "", new { @class = "text-danger" })
+                        <img id="imgPreview3" src="#" alt="Image Preview 3" style="display: none; max-width: 100px; margin-top: 10px;" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="MaNSX">Mã NSX</label>
+                        @Html.DropDownList("MaNSX", null, htmlAttributes: new { @class = "form-control", style = "min-width: 100%;" })
+                        @Html.ValidationMessageFor(model => model.MaNSX, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="GiaSale">Giá Sale</label>
+                        @Html.EditorFor(model => model.GiaSale, new { htmlAttributes = new { @class = "form-control", placeholder = "Giá Sale", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.GiaSale, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Mota">Mô tả</label>
+                        @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control", id = "Mota", placeholder = "Mô tả sản phẩm", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LoaiSP">Loại sản phẩm</label>
+                        <input type="text" name="LoaiSP" class="form-control" placeholder="Loại sản phẩm" style="min-width: 100%;" />
+                        @Html.ValidationMessageFor(model => model.LoaiSP, "", new { @class = "text-danger" })
+                    </div>
+                    <input type="submit" value="Tạo mới" class="btn btn-primary me-2" />
+                    <input type="reset" value="Hủy bỏ" class="btn btn-secondary" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-link text-white fw-bold", style = "font-size: 20px; text-decoration: none;" })
+</div>

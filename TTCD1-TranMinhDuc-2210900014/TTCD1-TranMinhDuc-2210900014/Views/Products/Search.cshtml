@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TTCD1_TranMinhDuc_2210900014.Models.Tmd_SanPham>
+
+<h2>Kết quả tìm kiếm cho "@Request.QueryString["searchQuery"]"</h2>
+
+@if (!Model.Any())
+{
+    <p>Không tìm thấy sản phẩm nào phù hợp với tìm kiếm của bạn.</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var product in Model)
+        {
+           <div class="col-lg-3 col-md-4 col-6 d-flex justify-content-center mb-4">
+               <div class="product-block-item text-center" style="border-radius: 10px; overflow: hidden; border: 1px solid #ddd; position: relative;">
+                   <div class="product-thumbnail p-2">
+                       <img src="~/Content/Img/Products/Samsung/@product.img1" class="card-img-top" alt="@product.TenSP" style="width: 100%; max-height: 185px; max-width: 150px;">
+                   </div>
+                   <div class="card-body p-3">
+                       <h5 class="cd-title">@product.TenSP</h5>
+                       <p class="product-price"><strong>@product.GiaBan</strong></p>
+                       <div class="note d-flex align-items-center" style="margin-bottom: 5px;">
+                           <span class="ban" style="background-color: orange; color: white; border-radius: 5px; padding: 2px 5px; margin-right: 5px;">KM</span>
+                           <label style="margin-top: 5px; text-align: left; font-size: 14px; color: #705C53" title="Giảm thêm 500K - 2TR qua cổng thanh toán">Giảm thêm 500K - 2TR qua cổng thanh toán</label>
+                       </div>
+                       <div class="note d-flex align-items-center" style="margin-bottom: 5px;">
+                           <span class="ban" style="background-color: orange; color: white; border-radius: 5px; padding: 2px 5px; margin-right: 5px;">KM</span>
+                           <label style="margin-top: 5px; text-align: left; font-size: 14px; color: #705C53" title="Miễn phí chuyển đổi trả góp qua 26 ngân hàng">Miễn phí chuyển đổi trả góp qua 26 ngân hàng</label>
+                       </div>
+                       <a href="@Url.Action("Details", "Products", new { id = product.MaSP })" class="btn btn-primary">Xem Chi Tiết</a>
+                   </div>
+               </div>
+           </div>
+        }
+    </div>
+}

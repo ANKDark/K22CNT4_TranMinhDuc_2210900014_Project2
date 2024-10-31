@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TTCD1_TranMinhDuc_2210900014.Models.Tmd_News>
+
+<main aria-labelledby="title">
+    <div class="bread-crumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-left">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a class="ahome-contact" href="#"><span>Trang chủ</span></a>
+                            <span>&nbsp;/&nbsp;</span>
+                        </li>
+                        <li>
+                            <strong><span>Tin tức</span></strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="list-news w-100">
+                <h3 class="title-new">Bài viết</h3>
+                <div class="row">
+                    @foreach (var newlist in Model)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12 news-item mb-4">
+                            <div class="item_blog_base">
+                                <a href="#" class="thumb">
+                                    <img src="~/Content/Img/News/@newlist.Anh" style="width: 100%; max-height: 210px;" class="img-fluid custom-img" alt="" />
+                                </a>
+                                <div class="clearfix content_blog">
+                                    <div class="time-post">Thứ 3, 22/10/2024</div>
+                                    <h3><a href="#" class="text-link">@newlist.TitleNew</a></h3>
+                                    <p id="limited-text">@newlist.Mota1</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    const maxLength = 100;
+    const textElement = document.getElementById('limited-text');
+    if (textElement.textContent.length > maxLength) {
+        textElement.textContent = textElement.textContent.slice(0, maxLength) + '...';
+        }
+</script>

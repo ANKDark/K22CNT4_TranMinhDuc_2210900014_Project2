@@ -1,0 +1,57 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_Quantri
+
+@{
+    ViewBag.Title = "Xóa Quản Trị";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-header">
+                <h4>Xóa Quản Trị</h4>
+            </div>
+            <div class="card-body">
+                <h3>Bạn có chắc chắn muốn xóa không?</h3>
+                <dl class="row">
+                    <dt class="col-sm-3">Họ Tên</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.HotenAdmin)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Mật Khẩu</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.MatkhauAdmin)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Trạng Thái</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.TrangThai.HasValue)
+                        {
+                            <text>Hoạt động</text>
+                        }
+                        else
+                        {
+                            <text>Ngừng hoạt động</text>
+                        }
+                    </dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Tài Khoản</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Taikhoan)</dd>
+                    <hr />
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" name="id" value="@Model.MaAdmin" />
+
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                    <span>|</span>
+                    @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+                }
+            </div>
+        </div>
+    </div>
+</div>

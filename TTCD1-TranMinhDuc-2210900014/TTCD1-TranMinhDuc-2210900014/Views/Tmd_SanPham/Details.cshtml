@@ -1,0 +1,149 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_SanPham
+
+@{
+    ViewBag.Title = "Chi Tiết Sản Phẩm";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-header">
+                <h4>Thông Tin Sản Phẩm</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Tên Sản Phẩm</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.TenSP)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Số Lượng</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.SoLuong)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Ngày Nhập</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.NgayNhap, "{0:dd/MM/yyyy}")</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Giá Bán</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.GiaBan)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Giá Nhập</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.GiaNhap)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Trạng Thái Sale</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.Sale.HasValue)
+                        {
+                            if (Model.Sale.Value)
+                            {
+                                <text>Có</text>
+                            }
+                            else
+                            {
+                                <text>Không</text>
+                            }
+                        }
+                        else
+                        {
+                            <text>Không xác định</text>
+                        }
+                    </dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Số Lượng Đã Bán</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.SoLuongDaBan)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Tình Trạng</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.TinhTrang.HasValue)
+                        {
+                            if (Model.TinhTrang.Value)
+                            {
+                                <text>Còn hàng</text>
+                            }
+                            else
+                            {
+                                <text>Hết hàng</text>
+                            }
+                        }
+                        else
+                        {
+                            <text>Không xác định</text>
+                        }
+                    </dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Hình Ảnh 1</dt>
+                    <dd class="col-sm-9">
+                        @{
+                            var imgPath1 = Url.Content("~/Content/Img/Products/" + Model.img1);
+                        }
+                        @if (!string.IsNullOrEmpty(Model.img1) && System.IO.File.Exists(Server.MapPath(imgPath1)))
+                        {
+                            <img style="display: block; width: 50px; height: 90px;" src="@imgPath1" alt="Hình Ảnh 1" class="img-fluid" />
+                        }
+                        else
+                        {
+                            <p>Không thể tải hình ảnh: Hình ảnh không tồn tại hoặc không hợp lệ.</p>
+                        }
+                    </dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Hình Ảnh 2</dt>
+                    <dd class="col-sm-9">
+                        @{
+                            var imgPath2 = Url.Content("~/Content/Img/Products/" + Model.img2);
+                        }
+                        @if (!string.IsNullOrEmpty(Model.img2) && System.IO.File.Exists(Server.MapPath(imgPath2)))
+                        {
+                            <img style="display: block; width: 50px; height: 90px;" src="@imgPath2" alt="Hình Ảnh 2" class="img-fluid" />
+                        }
+                        else
+                        {
+                            <p>Không thể tải hình ảnh: Hình ảnh không tồn tại hoặc không hợp lệ.</p>
+                        }
+                    </dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Hình Ảnh 3</dt>
+                    <dd class="col-sm-9">
+                        @{
+                            var imgPath3 = Url.Content("~/Content/Img/Products/" + Model.img3);
+                        }
+                        @if (!string.IsNullOrEmpty(Model.img3) && System.IO.File.Exists(Server.MapPath(imgPath3)))
+                        {
+                            <img style="display: block; width: 50px; height: 90px;" src="@imgPath3" alt="Hình Ảnh 3" class="img-fluid" />
+                        }
+                        else
+                        {
+                            <p>Không thể tải hình ảnh: Hình ảnh không tồn tại hoặc không hợp lệ.</p>
+                        }
+                    </dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Giá Sale</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.GiaSale)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Mô Tả</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Mota)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Loại Sản Phẩm</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.LoaiSP)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Nhà Sản Xuất</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Tmd_NSX.TenNSX)</dd>
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaSP }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</div>

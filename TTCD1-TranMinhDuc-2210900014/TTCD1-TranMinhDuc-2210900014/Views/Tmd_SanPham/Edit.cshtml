@@ -1,0 +1,147 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_SanPham
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Chỉnh sửa sản phẩm</h4>
+                <p class="card-description">
+                    <a href="/HomeAdmin/DashBoard" style="text-decoration: none; color: inherit; font-weight: bold;">Trang chủ admin</a> &#47; Chỉnh sửa sản phẩm
+                </p>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MaSP)
+
+                    <div class="form-group">
+                        <label for="TenSP">Tên sản phẩm</label>
+                        @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên sản phẩm", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="SoLuong">Số lượng</label>
+                        @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", placeholder = "Số lượng", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="NgayNhap">Ngày nhập</label>
+                        @Html.TextBoxFor(model => model.NgayNhap, new { @class = "form-control", placeholder = "Chọn ngày nhập", style = "min-width: 100%;" })
+                        @Html.ValidationMessageFor(model => model.NgayNhap, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="GiaBan">Giá bán</label>
+                        @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control", placeholder = "Giá bán", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Sale">Sale</label>
+                        @Html.DropDownList("Sale", new SelectList(new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Có", Value = "true" },
+                            new SelectListItem { Text = "Không", Value = "false" }
+                        }, "Value", "Text", Model.Sale ?? false ? "true" : "false"), new { @class = "form-control", style = "min-width: 100%;" })
+                        @Html.ValidationMessageFor(model => model.Sale, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="SoLuongDaBan">Số lượng đã bán</label>
+                        @Html.EditorFor(model => model.SoLuongDaBan, new { htmlAttributes = new { @class = "form-control", placeholder = "Số lượng đã bán", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.SoLuongDaBan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TinhTrang">Tình trạng</label>
+                        @Html.DropDownList("TinhTrang", new SelectList(new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Còn hàng", Value = "true" },
+                            new SelectListItem { Text = "Hết hàng", Value = "false" }
+                        }, "Value", "Text", Model.TinhTrang ?? false ? "true" : "false"), new { @class = "form-control", style = "min-width: 100%;" })
+                        @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="img1">Hình ảnh 1</label>
+                        <div class="input-group col-xs-12">
+                            @Html.EditorFor(model => model.img1, new { htmlAttributes = new { @class = "form-control file-upload-info", style = "min-width: 95%;", id = "fileInput1" } })
+                            <input type="file" id="fileInput1Hidden" style="display: none;" onchange="updateFileName(this, 'fileInput1', 'imgPreview')" />
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementById('fileInput1Hidden').click();">Tải lên</button>
+                            </span>
+                            @Html.ValidationMessageFor(model => model.img1, "", new { @class = "text-danger" })
+                            <img id="imgPreview" src="~/Content/Img/Products/@Model.img1" alt="Image Preview" style="max-width: 100px; margin-top: 10px;" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="img2">Hình ảnh 2</label>
+                        <div class="input-group col-xs-12">
+                            @Html.EditorFor(model => model.img2, new { htmlAttributes = new { @class = "form-control file-upload-info", style = "min-width: 95%;", id = "fileInput2" } })
+                            <input type="file" id="fileInput2Hidden" style="display: none;" onchange="updateFileName(this, 'fileInput2', 'previewImg2')" />
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementById('fileInput2Hidden').click();">Tải lên</button>
+                            </span>
+                            @Html.ValidationMessageFor(model => model.img2, "", new { @class = "text-danger" })
+                            <img id="previewImg2" src="~/Content/Img/Products/@Model.img2" alt="Image Preview 2" style="max-width: 100px; margin-top: 10px;" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="img3">Hình ảnh 3</label>
+                        <div class="input-group col-xs-12">
+                            @Html.EditorFor(model => model.img3, new { htmlAttributes = new { @class = "form-control file-upload-info", style = "min-width: 95%;", id = "fileInput3" } })
+                            <input type="file" id="fileInput3Hidden" style="display: none;" onchange="updateFileName(this, 'fileInput3', 'previewImg3')" />
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementById('fileInput3Hidden').click();">Tải lên</button>
+                            </span>
+                            @Html.ValidationMessageFor(model => model.img3, "", new { @class = "text-danger" })
+                            <img id="previewImg3" src="~/Content/Img/Products/@Model.img3" alt="Image Preview 3" style="max-width: 100px; margin-top: 10px;" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="MaNSX">Mã NSX</label>
+                        @Html.DropDownList("MaNSX", null, htmlAttributes: new { @class = "form-control", style = "min-width: 100%;" })
+                        @Html.ValidationMessageFor(model => model.MaNSX, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="GiaSale">Giá Sale</label>
+                        @Html.EditorFor(model => model.GiaSale, new { htmlAttributes = new { @class = "form-control", placeholder = "Giá Sale", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.GiaSale, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Mota">Mô tả</label>
+                        @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control", id = "Mota", placeholder = "Mô tả sản phẩm", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Mota, new { id = "MotaHidden" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Mota">Mô tả</label>
+                        <textarea name="Mota" class="form-control" id="Mota" placeholder="Mô tả sản phẩm" style="min-width: 100%;"></textarea>
+                        @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Mota, new { id = "MotaHidden" })
+                    </div>
+                    <input type="submit" value="Lưu" class="btn btn-primary me-2" />
+                    <input type="reset" value="Hủy bỏ" class="btn btn-secondary" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-link text-white fw-bold", style = "font-size: 20px; text-decoration: none;" })
+</div>

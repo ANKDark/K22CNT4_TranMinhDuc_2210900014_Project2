@@ -1,0 +1,41 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_KhachHang
+
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/LoginRegisterLayout.cshtml";
+}
+
+<div class="login">
+    <div class="wrapper_tmd">
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <h1>Đăng nhập</h1>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="input_box_tmd">
+                @Html.TextBoxFor(model => model.TaiKhoan, new { @placeholder = "Tên đăng nhập", @required = "required", @class = "form-control" })
+                <i class='bx bx-user'></i>
+                @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input_box_tmd">
+                @Html.PasswordFor(model => model.MatKhau, new { @placeholder = "Mật khẩu", @required = "required", @class = "form-control" })
+                <i class='bx bx-lock'></i>
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="rmk_tmd">
+                <label for="checkbox-tmd">
+                    <input type="checkbox" name="rmk_tmd" /> Ghi nhớ đăng nhập
+                </label>
+                <a href="#" onclick="hienFormNewpass()">Quên mật khẩu?</a>
+            </div>
+
+            <button type="submit" class="btn_sub_tmd" name="btn_sub_tmd">Đăng nhập</button>
+            <div class="register_link_tmd">
+                <p>Bạn không có tài khoản? <a href="/Home/Register">Đăng ký</a></p>
+            </div>
+        }
+    </div>
+</div>
