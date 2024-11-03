@@ -24,17 +24,18 @@
             <div class="list-news w-100">
                 <h3 class="title-new">Bài viết</h3>
                 <div class="row">
-                    @foreach (var newlist in Model)
+                    @for (int i = 0; i < Model.Count(); i++)
                     {
+                        var newlist = Model.ElementAt(i);
                         <div class="col-lg-4 col-md-6 col-sm-6 col-12 news-item mb-4">
                             <div class="item_blog_base">
-                                <a href="#" class="thumb">
+                                <a href="/Home/DetailsNew/@newlist.MaNew" class="thumb">
                                     <img src="~/Content/Img/News/@newlist.Anh" style="width: 100%; max-height: 210px;" class="img-fluid custom-img" alt="" />
                                 </a>
                                 <div class="clearfix content_blog">
                                     <div class="time-post">Thứ 3, 22/10/2024</div>
-                                    <h3><a href="#" class="text-link">@newlist.TitleNew</a></h3>
-                                    <p id="limited-text">@newlist.Mota1</p>
+                                    <h3><a href="/Home/DetailsNew/@newlist.MaNew" class="text-link">@newlist.TitleNew</a></h3>
+                                    <div class="limited-text">@Html.Raw(newlist.Mota1)</div>
                                 </div>
                             </div>
                         </div>
@@ -44,10 +45,17 @@
         </div>
     </div>
 </main>
+
 <script>
-    const maxLength = 100;
-    const textElement = document.getElementById('limited-text');
-    if (textElement.textContent.length > maxLength) {
-        textElement.textContent = textElement.textContent.slice(0, maxLength) + '...';
-        }
+    document.addEventListener("DOMContentLoaded", function () {
+        const maxLength = 100;
+        const textElements = document.querySelectorAll('.limited-text');
+
+        textElements.forEach(textElement => {
+            const innerText = textElement.innerText || textElement.textContent;
+            if (innerText.length > maxLength) {
+                textElement.innerText = innerText.slice(0, maxLength) + '...';
+            }
+        });
+    });
 </script>

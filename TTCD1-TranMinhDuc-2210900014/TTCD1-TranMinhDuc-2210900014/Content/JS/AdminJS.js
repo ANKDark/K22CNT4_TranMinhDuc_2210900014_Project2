@@ -1,32 +1,24 @@
-﻿ClassicEditor
-    .create(document.querySelector('#Mota'))
-    .then(editor => {
-        console.log('Editor for Mota:', editor);
-        document.querySelector('form').addEventListener('submit', function () {
-            const data = editor.getData();
-            document.querySelector('#MotaHidden').value = data;
+﻿document.addEventListener("DOMContentLoaded", function () {
+    ClassicEditor
+        .create(document.querySelector('#Mota'))
+        .catch(error => {
+            console.error(error);
         });
-    })
-    .catch(error => {
-        console.error('Error creating Mota editor:', error);
-    });
-ClassicEditor
-    .create(document.querySelector('#Mota1'))
-    .then(editor => {
-        console.log('Editor for Mota1:', editor);
-    })
-    .catch(error => {
-        console.error('Error creating Mota1 editor:', error);
-    });
-
-ClassicEditor
-    .create(document.querySelector('#Mota2'))
-    .then(editor => {
-        console.log('Editor for Mota2:', editor);
-    })
-    .catch(error => {
-        console.error('Error creating Mota2 editor:', error);
-    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    ClassicEditor
+        .create(document.querySelector('#Mota1'))
+        .catch(error => {
+            console.error(error);
+        });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    ClassicEditor
+        .create(document.querySelector('#Mota2'))
+        .catch(error => {
+            console.error(error);
+        });
+});
 function updateFileName(input, editorId, previewImgId) {
     const fileInput = document.getElementById(editorId);
     const imgPreview = document.getElementById(previewImgId);

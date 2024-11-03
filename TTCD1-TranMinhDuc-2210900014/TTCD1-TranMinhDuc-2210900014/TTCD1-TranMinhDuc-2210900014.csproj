@@ -135,6 +135,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\Tmd_HoaDonController.cs" />
+    <Compile Include="Controllers\Tmd_HoTroController.cs" />
     <Compile Include="Controllers\Tmd_KhachHangController.cs" />
     <Compile Include="Controllers\Tmd_NewsController.cs" />
     <Compile Include="Controllers\Tmd_NSXController.cs" />
@@ -164,6 +165,9 @@
       <DependentUpon>Tmd_2210900014_TTCD.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Tmd_HoaDon.cs">
+      <DependentUpon>Tmd_2210900014_TTCD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tmd_HoTro.cs">
       <DependentUpon>Tmd_2210900014_TTCD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tmd_KhachHang.cs">
@@ -211,6 +215,34 @@
     <Content Include="Content\Img\ads\ads2.png" />
     <Content Include="Content\Img\ads\ads3.jpg" />
     <Content Include="Content\Img\logoprj.jpg" />
+    <Content Include="Content\Img\News\id1.jpg" />
+    <Content Include="Content\Img\Products\11-do-details1.png" />
+    <Content Include="Content\Img\Products\11-xanh-la-details2.png" />
+    <Content Include="Content\Img\Products\15-pro-max-details1.png" />
+    <Content Include="Content\Img\Products\15-pro-max-details2.png" />
+    <Content Include="Content\Img\Products\ip16.png" />
+    <Content Include="Content\Img\Products\iphone-11.png" />
+    <Content Include="Content\Img\Products\iphone-15-plus-details1.png" />
+    <Content Include="Content\Img\Products\iphone-15-plus-details2.png" />
+    <Content Include="Content\Img\Products\iphone-15-plus.png" />
+    <Content Include="Content\Img\Products\iphone-16-details1.png" />
+    <Content Include="Content\Img\Products\iphone-16-details2.png" />
+    <Content Include="Content\Img\Products\iphone-16-promax-details1.png" />
+    <Content Include="Content\Img\Products\iphone-16-promax-details2.png" />
+    <Content Include="Content\Img\Products\iphone-16-promax.png" />
+    <Content Include="Content\Img\Products\iphone15promax.png" />
+    <Content Include="Content\Img\Products\s24-details1.png" />
+    <Content Include="Content\Img\Products\s24-details2.png" />
+    <Content Include="Content\Img\Products\s24-ultra-details1.png" />
+    <Content Include="Content\Img\Products\s24-ultra-details2.png" />
+    <Content Include="Content\Img\Products\s24-ultra.png" />
+    <Content Include="Content\Img\Products\samsung-galaxy-a06.jpg" />
+    <Content Include="Content\Img\Products\samsung-galaxy-s24.jpg" />
+    <Content Include="Content\Img\Products\sm-a065f-galaxy-a06-details1.png" />
+    <Content Include="Content\Img\Products\sm-a065f-galaxy-a06-details2.png" />
+    <Content Include="Content\Img\Products\z-flip6-details1.png" />
+    <Content Include="Content\Img\Products\z-flip6-details2.png" />
+    <Content Include="Content\Img\Products\z-flip6.png" />
     <Content Include="Content\Img\Products\z-fold6-details2.png" />
     <Content Include="Content\Img\Products\z-fold6.png" />
     <Content Include="Content\Img\Products\z-fold6-details1.png" />
@@ -249,7 +281,6 @@
     <Content Include="Models\Tmd_2210900014_TTCD.edmx.diagram">
       <DependentUpon>Tmd_2210900014_TTCD.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\Img\News\id1.webp" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -318,10 +349,15 @@
     <Content Include="Views\Tmd_News\Details.cshtml" />
     <Content Include="Views\Tmd_News\Edit.cshtml" />
     <Content Include="Views\Tmd_News\Index.cshtml" />
+    <Content Include="Views\Home\SuaThongTin.cshtml" />
+    <Content Include="Views\Tmd_HoTro\Create.cshtml" />
+    <Content Include="Views\Tmd_HoTro\Delete.cshtml" />
+    <Content Include="Views\Tmd_HoTro\Details.cshtml" />
+    <Content Include="Views\Tmd_HoTro\Edit.cshtml" />
+    <Content Include="Views\Tmd_HoTro\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\XuLyVanBan\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

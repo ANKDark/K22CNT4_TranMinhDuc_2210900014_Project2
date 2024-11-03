@@ -1,15 +1,15 @@
 ﻿@using TTCD1_TranMinhDuc_2210900014.Models
 
-<h2>Thông tin thanh toán</h2>
+<h2 style="text-transform: uppercase; margin-top: 50px; color:darkseagreen">Thông tin thanh toán</h2>
 <style>
     .payment-card {
         border: 1px solid #dee2e6;
         border-radius: 0.5rem;
         padding: 30px;
-        margin: 50px auto; /* Căn giữa */
+        margin: 50px auto;
         box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-        background-color: #ffffff; /* Nền trắng cho card */
-        max-width: 500px; /* Chiều rộng tối đa */
+        background-color: #ffffff;
+        max-width: 500px;
     }
 
     h2 {
@@ -24,38 +24,38 @@
     }
 
     .form-control {
-        border-radius: 0.5rem; /* Bo góc cho input */
+        border-radius: 0.5rem;
         box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
         transition: border-color 0.3s;
-        width: calc(100% - 1rem); /* Đảm bảo input không vượt quá 100% */
-        padding: 12px 15px; /* Tăng padding cho input */
-        box-sizing: border-box; /* Bao gồm padding và border trong chiều rộng */
+        width: calc(100% - 1rem);
+        padding: 12px 15px;
+        box-sizing: border-box;
     }
 
         .form-control:focus {
-            border-color: #28a745; /* Màu xanh lá khi focus */
+            border-color: #28a745;
             box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
         }
 
     .btn-custom {
-        background-color: #28a745; /* Màu xanh lá */
+        background-color: #28a745;
         color: white;
-        border-radius: 0.5rem; /* Bo góc cho button */
+        border-radius: 0.5rem;
         transition: background-color 0.3s;
-        padding: 12px; /* Tăng padding cho button */
+        padding: 12px;
     }
 
         .btn-custom:hover {
-            background-color: #218838; /* Màu xanh đậm khi hover */
+            background-color: #218838;
             color: #ffffff;
         }
 
         .btn-custom:active {
-            background-color: #1e7e34; /* Màu tối hơn khi nhấn */
+            background-color: #1e7e34;
         }
 
     .form-group {
-        margin-bottom: 20px; /* Khoảng cách 20px giữa các input */
+        margin-bottom: 20px;
     }
 </style>
 @{
@@ -78,33 +78,42 @@
 }
 else
 {
-<div class="container">
-    <div class="payment-card d-flex justify-content-center">
-        <div class="card p-4" style="width: 400px;">
-            <h4 class="text-center mb-4">Địa chỉ giao hàng</h4>
-            <form action="@Url.Action("Xacnhan", "Checkout")" method="post">
-                <div class="form-group mb-3">
-                    <label for="name" class="form-label">Họ và tên:</label>
-                    <input type="text" name="HoTen" class="form-control" value="@khachHang.HoTen" required placeholder="Nhập họ và tên" />
-                </div>
-                <div class="form-group mb-3">
-                    <label for="address" class="form-label">Địa chỉ:</label>
-                    <input type="text" name="DiaChi" class="form-control" required placeholder="Nhập địa chỉ giao hàng" />
-                </div>
-                <div class="form-group mb-3">
-                    <label for="DienThoai">Số điện thoại:</label>
-                    <input type="tel" name="DienThoai" class="form-control" value="@khachHang.DienThoai" required placeholder="Nhập số điện thoại của bạn" pattern="[0-9]{10,11}" title="Số điện thoại chỉ chứa số, từ 10 đến 11 ký tự." />
-                </div>
-                <div class="form-group mb-3">
-                    <label for="PhuongThucThanhToan">Phương thức thanh toán:</label>
-                    <select name="PhuongThucThanhToan" class="form-control">
-                        <option value="tienmat">Thanh toán tiền mặt khi nhận hàng</option>
-                        <option value="chuyenkhoan">Chuyển khoản ngân hàng</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Xác nhận</button>
-            </form>
+    <div class="container">
+        <div class="payment-card d-flex justify-content-center">
+            <div class="card p-4" style="width: 400px;">
+                <h4 class="text-center mb-4">Địa chỉ giao hàng</h4>
+                <form action="@Url.Action("Xacnhan", "Checkout")" method="post">
+                    <div class="form-group mb-3">
+                        <label for="name" class="form-label">Họ và tên:</label>
+                        <input type="text" name="HoTen" class="form-control" value="@khachHang.HoTen" required placeholder="Nhập họ và tên" style="min-width: 100%" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="address" class="form-label">Địa chỉ:</label>
+                        <input type="text" name="DiaChi" class="form-control" required placeholder="Nhập địa chỉ giao hàng" style="min-width: 100%" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="DienThoai">Số điện thoại:</label>
+                        <input type="tel" name="DienThoai" class="form-control" value="@khachHang.DienThoai" required placeholder="Nhập số điện thoại của bạn" pattern="[0-9]{10,11}" title="Số điện thoại chỉ chứa số, từ 10 đến 11 ký tự." style="min-width: 100%" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="PhuongThucThanhToan">Phương thức thanh toán:</label>
+                        <select name="PhuongThucThanhToan" class="form-control" style="min-width: 100%">
+                            <option value="tienmat">Thanh toán tiền mặt khi nhận hàng</option>
+                            <option value="chuyenkhoan">Chuyển khoản ngân hàng</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Xác nhận</button>
+                </form>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger mt-3">
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <p>@error.ErrorMessage</p>
+                        }
+                    </div>
+                }
+            </div>
         </div>
     </div>
-</div>
 }

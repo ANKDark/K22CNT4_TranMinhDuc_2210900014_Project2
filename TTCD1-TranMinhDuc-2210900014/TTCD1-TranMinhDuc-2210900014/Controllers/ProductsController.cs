@@ -24,6 +24,7 @@ namespace TTCD1_TranMinhDuc_2210900014.Controllers
         }
         public ActionResult Index(string category = null)
         {
+            ViewBag.Title = "Loại sản phẩm";
             if (!string.IsNullOrEmpty(category))
             {
                 var products = db.Tmd_SanPham.Where(p => p.LoaiSP.Equals(category)).ToList();
@@ -36,6 +37,7 @@ namespace TTCD1_TranMinhDuc_2210900014.Controllers
 
         public ActionResult Search(string searchQuery)
         {
+            ViewBag.Title = "Tìm kiếm";
             if (string.IsNullOrEmpty(searchQuery))
             {
                 return View(new List<Tmd_SanPham>());
@@ -49,6 +51,7 @@ namespace TTCD1_TranMinhDuc_2210900014.Controllers
 
         public ActionResult Details(int id)
         {
+            ViewBag.Title = "Thông tin chi tiết";
             var product = db.Tmd_SanPham.Find(id);
             if (product == null)
             {

@@ -17,8 +17,20 @@ namespace TTCD1_TranMinhDuc_2210900014.Controllers
         // GET: Tmd_SanPham
         public ActionResult Index()
         {
-            var tmd_SanPham = db.Tmd_SanPham.Include(t => t.Tmd_NSX);
-            return View(tmd_SanPham.ToList());
+            var tmd_SanPham = db.Tmd_SanPham.Include(t => t.Tmd_NSX).ToList();
+
+            foreach (var sanPham in tmd_SanPham)
+            {
+                if (sanPham.SoLuong == 0)
+                {
+                    sanPham.TinhTrang = false;
+                    db.Entry(sanPham).State = EntityState.Modified;
+                }
+            }
+
+            db.SaveChanges();
+
+            return View(tmd_SanPham);
         }
 
         // GET: Tmd_SanPham/Details/5
@@ -82,10 +94,15 @@ namespace TTCD1_TranMinhDuc_2210900014.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "MaSP,TenSP,SoLuong,NgayNhap,GiaBan,GiaNhap,Sale,SoLuongDaBan,TinhTrang,img1,img2,img3,MaNSX,GiaSale,Mota,LoaiSP")] Tmd_SanPham tmd_SanPham)
         {
             if (ModelState.IsValid)
             {
+                if (tmd_SanPham.SoLuong == 0)
+                {
+                    tmd_SanPham.TinhTrang = false;
+                }
                 db.Entry(tmd_SanPham).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

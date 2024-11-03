@@ -1,8 +1,10 @@
-﻿<main aria-labelledby="title">
+﻿@if (Model.TinhTrang == true)
+{
+<main aria-labelledby="title">
     <div class="bread-crumb mt-5">
         <div class="container">
             <div class="header-name text-center">
-                <h1>@Model.TenSP</h1>
+                <h1 style="color: #1f1d1d">@Model.TenSP</h1>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-8 col-sm-10">
@@ -23,15 +25,23 @@
                             <span>THÔNG TIN SẢN PHẨM</span>
                         </div>
                         <div style="background-color: #F5F5F7; font-size: 20px;">
-                            <p>@Model.Mota</p>
+                            <p>@Html.Raw(Model.Mota)</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-8 col-sm-10">
                     <div class="position-relative">
                         <div class="box-price m-2">
-                            <span class="giaB"><strong>@Model.GiaBan đ</strong></span>
-                            <span class="giaKM"><del>@Model.GiaSale</del></span>
+                            @if (Model.Sale == true)
+                            {
+                                <span class="giaB"><strong>@string.Format("{0:N0}đ", Model.GiaSale)</strong></span>
+                                <span class="giaKM"><del>@string.Format("{0:N0}đ", Model.GiaBan)</del></span>
+                            }
+                            else
+                            {
+                                <span class="giaB">@string.Format("{0:N0}đ", Model.GiaBan)</span>
+                            }
+
                             <div style=" position: absolute; right: 0; top: 0; font-size: 12px">
                                 <label>MSP: </label>
                                 <strong style="color: black; font-size: 13px;">@Model.MaSP</strong>
@@ -58,20 +68,33 @@
                     <div id="selectedColor" class="mt-3"></div>
                     <div class="d-flex justify-content-center align-items-center mt-4" style="max-width: 100%;">
                         <div class="mx-2 text-center d-flex justify-content-center align-items-center"
-                             style="background: linear-gradient(90deg, #F64850, #FB810B); border: 1px solid #333; border-radius: 5%; max-width: 50%; flex-grow: 1; flex-shrink: 1;">
-                            <p style="color: white" class="m-3">Giá cuối không đổi chỉ còn <br /><span style="font-size: 24px"><strong>@Model.GiaBan đ</strong></span> </p>
+                             style="background: linear-gradient(90deg, #F64850, #FB810B); border: 1px solid #333; max-width: 50%; flex-grow: 1; flex-shrink: 1;">
+                            <p style="color: white" class="m-3">
+                                Giá cuối không đổi chỉ còn <br /><span style="font-size: 24px">
+                                    <strong>
+                                        @if (Model.Sale == true)
+                                        {
+                                            <span><strong>@string.Format("{0:N0}đ", Model.GiaSale)</strong></span>
+                                        }
+                                        else
+                                        {
+                                            <span>@string.Format("{0:N0}đ", Model.GiaBan)</span>
+                                        }
+                                    </strong>
+                                </span>
+                            </p>
                         </div>
                         <div class="ms-2 text-center justify-content-center align-items-center"
-                             style="background: transparent linear-gradient(180deg, #ffffff 0%, #c3c3c3 100%); border: 1px solid #333; border-radius: 5%; max-width: 50%; flex-grow: 1; flex-shrink: 1;">
+                             style="background: transparent linear-gradient(180deg, #ffffff 0%, #c3c3c3 100%); border: 1px solid #333; max-width: 50%; flex-grow: 1; flex-shrink: 1;">
                             <div style="margin: 7.5px">
                                 <h4 style="font-weight: 400; color: #091057; margin: 0;">LÊN ĐỜI NGAY</h4>
                                 <p style="margin: 0;">Trợ giá lên đến 500.000đ thu cũ đổi mới</p>
-                                <span><strong>@Model.GiaBan đ</strong></span>
+                                <span><strong>@string.Format("{0:N0}đ", Model.GiaSale)</strong></span>
                             </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center align-items-center mt-4" style="max-width: 100%;">
-                        <button style="background-color: #FD475A; margin-right: 12%" class="btn">
+                        <button id="CheckoutBtn" style="background-color: #FD475A; margin-right: 12%" class="btn">
                             <strong style="font-size: 18px">MUA NGAY</strong>
                             <p>(Giao tận nhà hoặc nhận tại cửa hàng)</p>
                         </button>
@@ -117,7 +140,7 @@
         </div>
     </div>
 </main>
-
+}
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const colorOptions = document.querySelectorAll('.color-option');
@@ -151,14 +174,45 @@
                     console.log('Response data:', data);
                     if (data.success) {
                         alert('Đã thêm vào giỏ hàng!');
-                        windown.location.reload();
                     } else {
                         alert('Có lỗi khi thêm vào giỏ hàng!');
                     }
                 })
                 .catch(error => console.error('Error:', error));
+                window.location.reload();
+
             }
         });
     });
+
+    document.getElementById('CheckoutBtn').addEventListener('click', function () {
+            const productId = @Model.MaSP;
+    const quantity = 1;
+
+    const isLoggedIn = @((Session["UserID"] != null).ToString().ToLower());
+
+    if (!isLoggedIn) {
+        window.location.href = '@Url.Action("Login", "Home")';
+    } else {
+        fetch('/Carts/AddToCart', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ MaSP: productId, SoLuong: quantity })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response data:', data);
+            if (data.success) {
+                alert('Đã thêm vào giỏ hàng!');
+            } else {
+                alert('Có lỗi khi thêm vào giỏ hàng!');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+        window.location.href = '@Url.Action("Cart", "Carts")';
+
+    }
+});
+
 </script>
 

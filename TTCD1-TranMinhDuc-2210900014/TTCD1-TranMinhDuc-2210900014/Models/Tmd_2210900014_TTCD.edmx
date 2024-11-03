@@ -30,6 +30,16 @@
           <Property Name="SoLuong" Type="int" />
           <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
+        <EntityType Name="Tmd_HoTro">
+          <Key>
+            <PropertyRef Name="MaHoTro" />
+          </Key>
+          <Property Name="MaHoTro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiaChiEmail" Type="varchar" MaxLength="100" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="255" />
+          <Property Name="TrangThai" Type="bit" />
+          <Property Name="TinNhan" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="Tmd_KhachHang">
           <Key>
             <PropertyRef Name="MaKH" />
@@ -131,6 +141,7 @@
         <EntityContainer Name="Tmd_2210900014_TTCDModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tmd_HoaDon" EntityType="Self.Tmd_HoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tmd_HoTro" EntityType="Self.Tmd_HoTro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tmd_KhachHang" EntityType="Self.Tmd_KhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tmd_News" EntityType="Self.Tmd_News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tmd_NSX" EntityType="Self.Tmd_NSX" Schema="dbo" store:Type="Tables" />
@@ -180,6 +191,16 @@
           <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Tmd_KhachHang" Relationship="Self.FK_Tmd_HoaDon_Tmd_KhachHang" FromRole="Tmd_HoaDon" ToRole="Tmd_KhachHang" />
           <NavigationProperty Name="Tmd_SanPham" Relationship="Self.FK_Tmd_HoaDon_Tmd_SanPham" FromRole="Tmd_HoaDon" ToRole="Tmd_SanPham" />
+        </EntityType>
+        <EntityType Name="Tmd_HoTro">
+          <Key>
+            <PropertyRef Name="MaHoTro" />
+          </Key>
+          <Property Name="MaHoTro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiaChiEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HoTen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <Property Name="TinNhan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Tmd_KhachHang">
           <Key>
@@ -286,6 +307,7 @@
         <EntityContainer Name="Tmd_2210900014_TTCDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tmd_HoaDon" EntityType="Self.Tmd_HoaDon" />
+          <EntitySet Name="Tmd_HoTro" EntityType="Self.Tmd_HoTro" />
           <EntitySet Name="Tmd_KhachHang" EntityType="Self.Tmd_KhachHang" />
           <EntitySet Name="Tmd_News" EntityType="Self.Tmd_News" />
           <EntitySet Name="Tmd_NSX" EntityType="Self.Tmd_NSX" />
@@ -334,6 +356,17 @@
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
                 <ScalarProperty Name="Gia" ColumnName="Gia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tmd_HoTro">
+            <EntityTypeMapping TypeName="Tmd_2210900014_TTCDModel.Tmd_HoTro">
+              <MappingFragment StoreEntitySet="Tmd_HoTro">
+                <ScalarProperty Name="MaHoTro" ColumnName="MaHoTro" />
+                <ScalarProperty Name="DiaChiEmail" ColumnName="DiaChiEmail" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="TinNhan" ColumnName="TinNhan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

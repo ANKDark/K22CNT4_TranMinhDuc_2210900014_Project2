@@ -1,0 +1,55 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_HoTro
+
+@{
+    ViewBag.Title = "Chi Tiết Hỗ Trợ";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-header">
+                <h4>Thông Tin Hỗ Trợ</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Địa Chỉ Email</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.DiaChiEmail)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Họ Tên</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.HoTen)</dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Trạng Thái</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.TrangThai.HasValue)
+                        {
+                            if (Model.TrangThai.Value)
+                            {
+                                <text>Đã xử lý</text>
+                            }
+                            else
+                            {
+                                <text>Chưa xử lý</text>
+                            }
+                        }
+                        else
+                        {
+                            <text>Không xác định</text>
+                        }
+                    </dd>
+                    <hr />
+
+                    <dt class="col-sm-3">Tin Nhắn</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.TinNhan)</dd>
+                    <hr />
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaHoTro }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</div>

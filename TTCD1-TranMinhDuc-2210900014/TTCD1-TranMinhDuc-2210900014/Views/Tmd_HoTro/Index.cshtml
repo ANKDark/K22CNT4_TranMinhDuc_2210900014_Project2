@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TTCD1_TranMinhDuc_2210900014.Models.Tmd_HoTro>
+
+@{
+    ViewBag.Title = "Danh sách hỗ trợ";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Danh sách hỗ trợ</h4>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Địa chỉ Email</th>
+                                <th>Họ tên</th>
+                                <th>Trạng thái</th>
+                                <th>Tin nhắn</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.DiaChiEmail)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.HoTen)</td>
+                                    <td style="color: @(item.TrangThai.HasValue && item.TrangThai.Value ? "green" : "red")">
+                                        @(item.TrangThai == true ? "Đã xử lý" : "Chưa xử lý")
+                                    </td>
+                                    <td>@Html.Raw(item.TinNhan)</td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaHoTro }, new { @class = "btn btn-warning btn-sm" }) |
+                                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHoTro }, new { @class = "btn btn-info btn-sm" }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaHoTro }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

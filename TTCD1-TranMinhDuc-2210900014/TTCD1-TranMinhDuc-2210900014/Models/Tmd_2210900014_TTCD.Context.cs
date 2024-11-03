@@ -27,6 +27,7 @@ namespace TTCD1_TranMinhDuc_2210900014.Models
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tmd_HoaDon> Tmd_HoaDon { get; set; }
+        public virtual DbSet<Tmd_HoTro> Tmd_HoTro { get; set; }
         public virtual DbSet<Tmd_KhachHang> Tmd_KhachHang { get; set; }
         public virtual DbSet<Tmd_News> Tmd_News { get; set; }
         public virtual DbSet<Tmd_NSX> Tmd_NSX { get; set; }

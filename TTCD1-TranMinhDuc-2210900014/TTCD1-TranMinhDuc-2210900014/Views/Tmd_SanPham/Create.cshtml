@@ -48,6 +48,12 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="GiaSale">Giá Sale</label>
+                        @Html.EditorFor(model => model.GiaSale, new { htmlAttributes = new { @class = "form-control", placeholder = "Giá Sale", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.GiaSale, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
                         <label for="Sale">Sale</label>
                         @Html.DropDownList("Sale", new SelectList(new List<SelectListItem>
                         {
@@ -101,14 +107,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="GiaSale">Giá Sale</label>
-                        @Html.EditorFor(model => model.GiaSale, new { htmlAttributes = new { @class = "form-control", placeholder = "Giá Sale", style = "min-width: 100%;" } })
-                        @Html.ValidationMessageFor(model => model.GiaSale, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="form-group">
                         <label for="Mota">Mô tả</label>
-                        @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control", id = "Mota", placeholder = "Mô tả sản phẩm", style = "min-width: 100%;" } })
+                        @Html.TextAreaFor(model => model.Mota, new { @class = "form-control", placeholder = "Mô tả", style = "min-width: 100%;", id = "Mota" })
                         @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
                     </div>
 

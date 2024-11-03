@@ -1,0 +1,61 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_HoTro
+
+@{
+    ViewBag.Title = "Chỉnh sửa hỗ trợ";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Chỉnh sửa hỗ trợ</h4>
+                <p class="card-description">
+                    <a href="/HomeAdmin/DashBoard" style="text-decoration: none; color: inherit; font-weight: bold;">Trang chủ admin</a> &#47; Chỉnh sửa hỗ trợ
+                </p>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MaHoTro)
+
+                    <div class="form-group">
+                        <label for="DiaChiEmail">Địa chỉ Email</label>
+                        @Html.EditorFor(model => model.DiaChiEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Địa chỉ Email", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.DiaChiEmail, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="HoTen">Họ Tên</label>
+                        @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control", placeholder = "Họ Tên", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TrangThai">Trạng thái</label>
+                        @Html.DropDownList("TrangThai", new SelectList(new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Đã xử lý", Value = "true" },
+                            new SelectListItem { Text = "Chưa xử lý", Value = "false" }
+                        }, "Value", "Text", Model.TrangThai ?? false ? "true" : "false"), new { @class = "form-control", style = "min-width: 100%;" })
+                        @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TinNhan">Tin nhắn</label>
+                        @Html.EditorFor(model => model.TinNhan, new { htmlAttributes = new { @class = "form-control", placeholder = "Tin nhắn", style = "min-width: 100%;" } })
+                        @Html.ValidationMessageFor(model => model.TinNhan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <input type="submit" value="Lưu" class="btn btn-primary me-2" />
+                    <input type="reset" value="Hủy bỏ" class="btn btn-secondary" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-link text-white fw-bold", style = "font-size: 20px; text-decoration: none;" })
+</div>

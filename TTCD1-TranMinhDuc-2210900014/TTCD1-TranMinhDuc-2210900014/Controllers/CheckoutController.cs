@@ -41,32 +41,39 @@ namespace TTCD1_TranMinhDuc_2210900014.Controllers
 
                     foreach (var item in cart)
                     {
-                        
-                        var hoadon = new Tmd_HoaDon
-                        {
-                            DiaChiNN = model.DiaChiNN,
-                            DienThoaiNN = model.DienThoaiNN,
-                            NgayDat = DateTime.Now,
-                            NgayGiao = model.NgayGiao,
-                            TrangThai = false,
-                            MaKH = model.MaKH,
-                            MaSP = item.MaSP,
-                            SoLuong = item.SoLuong,
-                            Gia = item.GiaBan
-                        };
-
-                        db.Tmd_HoaDon.Add(hoadon);
-
                         var sanPham = db.Tmd_SanPham.Find(item.MaSP);
                         if (sanPham != null)
                         {
-                            sanPham.SoLuong -= item.SoLuong; 
-                                                 
-                            if (sanPham.SoLuong < 0)
+                            if (sanPham.SoLuong < item.SoLuong)
                             {
                                 ModelState.AddModelError("", "Số lượng sản phẩm không đủ để đặt hàng.");
                                 return View("Thongtin", model);
                             }
+                            sanPham.SoLuongDaBan = sanPham.SoLuongDaBan + item.SoLuong;
+                            sanPham.SoLuong -= item.SoLuong;
+                            if (sanPham.SoLuong <= 0)
+                            {
+                                if(sanPham.TinhTrang == true) {
+                                    sanPham.TinhTrang = false;
+                                }
+                            }
+
+                            db.Entry(sanPham).State = System.Data.Entity.EntityState.Modified;
+
+                            var hoadon = new Tmd_HoaDon
+                            {
+                                DiaChiNN = model.DiaChiNN,
+                                DienThoaiNN = model.DienThoaiNN,
+                                NgayDat = DateTime.Now,
+                                NgayGiao = model.NgayGiao,
+                                TrangThai = false,
+                                MaKH = model.MaKH,
+                                MaSP = item.MaSP,
+                                SoLuong = item.SoLuong,
+                                Gia = item.GiaBan
+                            };
+
+                            db.Tmd_HoaDon.Add(hoadon);
                         }
                     }
 

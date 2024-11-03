@@ -28,6 +28,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Tmd_HoTro">
+      <EntityTypeMapping TypeName="Tmd_2210900014_TTCDModel.Tmd_HoTro">
+        <MappingFragment StoreEntitySet="Tmd_HoTro">
+          <ScalarProperty Name="MaHoTro" ColumnName="MaHoTro" />
+          <ScalarProperty Name="DiaChiEmail" ColumnName="DiaChiEmail" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="TinNhan" ColumnName="TinNhan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Tmd_KhachHang">
       <EntityTypeMapping TypeName="Tmd_2210900014_TTCDModel.Tmd_KhachHang">
         <MappingFragment StoreEntitySet="Tmd_KhachHang">

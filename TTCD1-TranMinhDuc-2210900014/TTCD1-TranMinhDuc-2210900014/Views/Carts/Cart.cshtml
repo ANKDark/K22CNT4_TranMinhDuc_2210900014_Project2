@@ -15,7 +15,7 @@
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <div class="cart_item_image">
                                             <img style="width: 40px; height: 50px"
-                                                 src="~/Content/Img/Products/Samsung/@item.img"
+                                                 src="~/Content/Img/Products/@item.img"
                                                  onerror="this.onerror=null; this.src='~/Content/Img/placeholder.png';"
                                                  alt="Image for @item.TenSP" />
                                         </div>
@@ -33,10 +33,10 @@
                                                 </form>
                                             </div>
                                             <div class="cart_item_price">
-                                                <strong>Giá tiền:</strong> @item.GiaBan đ
+                                                <strong>Giá tiền:</strong> @string.Format("{0:N0}đ", item.GiaBan)
                                             </div>
                                             <div class="cart_item_total">
-                                                <strong>Tổng tiền:</strong> @(@item.GiaBan * item.SoLuong) đ
+                                                <strong>Tổng tiền:</strong> @string.Format("{0:N0}đ", @item.GiaBan * item.SoLuong)
                                             </div>
                                         </div>
                                         <div class="cart_item_action">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="order_total text-end">
                         <div class="order_total_title"><strong>Tổng giá tiền của giỏ hàng:</strong></div>
-                        <div class="order_total_amount">@Model.Sum(x => x.GiaBan * x.SoLuong) đ</div>
+                        <div class="order_total_amount">@string.Format("{0:N0}đ", Model.Sum(x => x.GiaBan * x.SoLuong))</div>
                     </div>
                     <div class="cart_buttons mt-3">
                         <a href="/Home/Index" class="btn btn-outline-secondary">Tiếp tục mua sắm</a>

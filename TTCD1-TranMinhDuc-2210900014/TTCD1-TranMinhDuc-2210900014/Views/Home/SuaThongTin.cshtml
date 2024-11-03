@@ -1,0 +1,68 @@
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_KhachHang
+
+@{
+    ViewBag.Title = "SuaThongTin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sửa Thông Tin</h2>
+
+@using (Html.BeginForm("SuaThongTin", "Home", new { id = Model.MaKH }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="HoTen">Họ Tên</label>
+        @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control", placeholder = "Họ Tên", style = "min-width: 100%;" } })
+        @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="TaiKhoan">Tài Khoản</label>
+        @Html.EditorFor(model => model.TaiKhoan, new { htmlAttributes = new { @class = "form-control", placeholder = "Tài Khoản", style = "min-width: 100%;" } })
+        @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="DienThoai">Điện Thoại</label>
+        @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control", placeholder = "Điện Thoại", style = "min-width: 100%;" } })
+        @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email", style = "min-width: 100%;" } })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="GioiTinh">Giới Tính</label>
+        @Html.DropDownList("GioiTinh", new SelectList(new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Nam", Value = "true" },
+            new SelectListItem { Text = "Nữ", Value = "false" }
+        }, "Value", "Text", Model.GioiTinh ?? false ? "true" : "false"), new { @class = "form-control", style = "min-width: 100%;" })
+        @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="MatKhau">Mật Khẩu</label>
+        @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", placeholder = "Mật Khẩu", style = "min-width: 100%;" } })
+        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="NgaySinh">Ngày Sinh</label>
+        @Html.TextBoxFor(model => model.NgaySinh, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", style = "min-width: 100%;" })
+        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="d-flex mt-3">
+        <input type="submit" value="Lưu" class="btn btn-primary me-2" />
+        <input type="reset" value="Hủy bỏ" class="btn btn-secondary" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Quay Về Danh Sách", "Index", null, new { @class = "btn btn-link fw-bold mt-2", style = "font-size: 20px; text-decoration: none; padding: 0;" })
+</div>

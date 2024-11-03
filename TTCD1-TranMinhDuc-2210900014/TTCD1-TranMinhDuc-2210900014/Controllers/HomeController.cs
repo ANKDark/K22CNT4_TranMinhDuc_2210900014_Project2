@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TTCD1_TranMinhDuc_2210900014.Models;
@@ -98,6 +100,36 @@ namespace TTCD1_TranMinhDuc_2210900014.Controllers
         {
             Session.Clear();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult SuaThongTin(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tmd_KhachHang tmd_KhachHang = db.Tmd_KhachHang.Find(id);
+            if (tmd_KhachHang == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tmd_KhachHang);
+        }
+
+        // POST: Tmd_KhachHang/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SuaThongTin([Bind(Include = "HoTen,TaiKhoan,DienThoai,Email,GioiTinh,MatKhau,NgaySinh")] Tmd_KhachHang tmd_KhachHang)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(tmd_KhachHang).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(tmd_KhachHang);
         }
     }
 }

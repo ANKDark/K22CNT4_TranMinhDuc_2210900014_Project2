@@ -27,27 +27,27 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="Mota1">Mô tả 1</label>
-                        @Html.EditorFor(model => model.Mota1, new { htmlAttributes = new { @class = "form-control", id = "Mota1", placeholder = "Mô tả 1", style = "min-width: 100%;" } })
+                        <label for="Mota">Mô tả 1</label>
+                        @Html.TextAreaFor(model => model.Mota1, new { @class = "form-control", placeholder = "Mô tả", style = "min-width: 100%;", id = "Mota1" })
                         @Html.ValidationMessageFor(model => model.Mota1, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group">
-                        <label for="Mota2">Mô tả 2</label>
-                        @Html.EditorFor(model => model.Mota2, new { htmlAttributes = new { @class = "form-control", id = "Mota2", placeholder = "Mô tả 2", style = "min-width: 100%;" } })
+                        <label for="Mota">Mô tả 2</label>
+                        @Html.TextAreaFor(model => model.Mota2, new { @class = "form-control", placeholder = "Mô tả", style = "min-width: 100%;", id = "Mota2" })
                         @Html.ValidationMessageFor(model => model.Mota2, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group">
-                        <label for="Anh">Ảnh</label>
+                        <label for="Anh">Hình ảnh</label>
                         <div class="input-group col-xs-12">
-                            @Html.EditorFor(model => model.Anh, new { htmlAttributes = new { @class = "form-control file-upload-info", style = "min-width: 95%;", id = "fileInputAnh", disabled = "" } })
-                            <input type="file" id="fileInputAnhHidden" style="display: none;" onchange="updateFileName(this, 'fileInputAnh'), previewImage(event, 'previewImgAnh')" />
+                            @Html.EditorFor(model => model.Anh, new { htmlAttributes = new { @class = "form-control file-upload-info", style = "min-width: 95%;", id = "fileInput" } })
+                            <input type="file" id="fileInputHidden" style="display: none;" onchange="updateFileName(this, 'fileInput', 'imgPreview')" />
                             <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementById('fileInputAnhHidden').click();">Tải lên</button>
+                                <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementById('fileInputHidden').click();">Tải lên</button>
                             </span>
                             @Html.ValidationMessageFor(model => model.Anh, "", new { @class = "text-danger" })
-                            <img id="previewImgAnh" src="#" alt="Preview Image" style="display: none; width: 50px; height: 90px;" />
+                            <img id="imgPreview" src="~/Content/Img/News/@Model.Anh" alt="Image Preview" style="max-width: 100px; margin-top: 10px;" />
                         </div>
                     </div>
 

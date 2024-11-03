@@ -34,8 +34,8 @@
                                 <tr>
                                     <td>@(j++)</td>
                                     <td>@Html.DisplayFor(modelItem => item.TitleNew)</td>
-                                    <td id="limited-text1">@Html.DisplayFor(modelItem => item.Mota1)</td>
-                                    <td id="limited-text2">@Html.DisplayFor(modelItem => item.Mota2)</td>
+                                    <td id="limited-text1">@Html.Raw(item.Mota1)</td>
+                                    <td id="limited-text2">@Html.Raw(item.Mota2)</td>
                                     <td>
                                         <img src="~/Content/Img/News/@item.Anh" alt="Hình ảnh" style="width: 50px; height: 50px;" />
                                     </td>

@@ -1,4 +1,5 @@
-﻿<main aria-labelledby="title">
+﻿@model TTCD1_TranMinhDuc_2210900014.Models.Tmd_HoTro
+<main aria-labelledby="title">
     <div class="bread-crumb">
         <div class="container">
             <div class="row">
@@ -16,57 +17,60 @@
             </div>
         </div>
     </div>
-
-    <div class="page_contact page-contacts py-5" style="background-image: url('https://images.pexels.com/photos/129208/pexels-photo-129208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-background-size: cover; background-position: center; margin-bottom:80px;">
+    <div class="page_contact page-contacts py-5" style="background-image: url('https://images.pexels.com/photos/129208/pexels-photo-129208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center; margin-bottom:80px;">
         <div class="container">
             <div class="row justify-content-end">
                 <div class="col-lg-6 col-12 bg-light p-4 shadow">
                     <h3 class="mb-4">Bạn cần hỗ trợ?</h3>
                     <p>ANK Smart rất hân hạnh được hỗ trợ bạn, hãy để lại thông tin cho chúng tôi nhé. Yêu cầu của bạn sẽ được xử lý và phản hồi trong thời gian sớm nhất.</p>
-                    <form>
+
+
+                    @using (Html.BeginForm("Create", "Tmd_HoTro", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
                         <div class="container">
                             <div class="row mb-3">
-                                <!-- Name Input -->
                                 <div class="col-md-6">
-                                    <label for="name" class="form-label">Họ tên</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Nhập họ tên">
+                                    <label>Họ tên</label>
+                                    @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập họ tên" } })
+                                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
                                 </div>
 
-                                <!-- Email Input -->
                                 <div class="col-md-6">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Nhập email">
+                                    <label>Địa chỉ email</label>
+                                    @Html.EditorFor(model => model.DiaChiEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập email" } })
+                                    @Html.ValidationMessageFor(model => model.DiaChiEmail, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
-                            <!-- Message Input (spanning full width, double the width of name and email) -->
                             <div class="row mb-4">
                                 <div class="col-md-12">
-                                    <label for="message" class="form-label">Tin nhắn</label>
-                                    <textarea class="form-control" id="message" rows="5" placeholder="Nhập tin nhắn của bạn"></textarea>
+                                    <label>Tin nhắn</label>
+                                    @Html.TextAreaFor(model => model.TinNhan, new { @class = "form-control", placeholder = "Tin nhắn", style = "min-width: 100%;" })
+                                    @Html.ValidationMessageFor(model => model.TinNhan, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
-                            <!-- Submit Button (full width, black) -->
                             <div class="row">
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-dark"><strong>Gửi</strong></button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    }
                 </div>
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-12">
                 <h3 class="text-uppercase">Công ty TNHH ANK Smart Việt Nam</h3>
-                <p><strong>ANK Smart</strong> là kênh là mua sắm đồ công nghệ, phụ kiện công nghệ hàng đầu Việt Nam</p>
+                <p><strong>ANK Smart</strong> là kênh mua sắm đồ công nghệ, phụ kiện công nghệ hàng đầu Việt Nam</p>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Hồ Chí Minh: Quận 1, TP>HCM</li>
+                    <li class="list-group-item">Hồ Chí Minh: Quận 1, TP HCM</li>
                     <li class="list-group-item">Hà Nội: Đại học Nguyễn Trãi, 28A Lê Trọng Tấn, Hà Cầu, Hà Đông, Hà Nội</li>
                     <li class="list-group-item">Giấy chứng nhận đăng ký doanh nghiệp số: 0855312279</li>
                 </ul>
